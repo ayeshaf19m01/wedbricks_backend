@@ -1,0 +1,12 @@
+# Dependency directories
+node_modules/
+
+# Environment variables
+.env
+
+# Uploaded files
+# /uploads/
+
+# IDE files
+.idea/
+.vscode/
