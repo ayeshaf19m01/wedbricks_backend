@@ -183,5 +183,59 @@ router.get('/:id', async (req, res) => {
     });
   }
 });
+// Delete service
+router.delete('/:id', verifyToken, async (req, res) => {
+  try {
+    // Validate ID format
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid service ID format'
+      });
+    }
+
+    const service = await Service.findOne({
+      _id: req.params.id,
+      vendor: req.vendor.id // Ensure vendor owns the service
+    });
+
+    if (!service) {
+      return res.status(404).json({
+        success: false,
+        message: 'Service not found or unauthorized'
+      });
+    }
+
+    // Delete associated files
+    const deleteFiles = (files) => {
+      files.forEach(file => {
+        const filePath = path.join(__dirname, '../public', file.url);
+        fs.unlink(filePath, err => {
+          if (err) console.error(`Error deleting file ${filePath}:`, err);
+        });
+      });
+    };
+
+    // Delete images and portfolio files
+    if (service.images.length > 0) deleteFiles(service.images);
+    if (service.portfolio.length > 0) deleteFiles(service.portfolio);
+
+    // Delete service from database
+    await Service.deleteOne({ _id: req.params.id });
+
+    res.json({
+      success: true,
+      message: 'Service deleted successfully'
+    });
+
+  } catch (error) {
+    console.error('Error deleting service:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error'
+    });
+  }
+});
+
 
 module.exports = router;

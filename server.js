@@ -31,7 +31,7 @@ socketHandler(server);
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174'],
+  origin: ['https://wed-bricks-l6pi-e08unxpgt-ayesha-s-projects-b9a7ba29.vercel.app/','http://localhost:5173', 'http://localhost:5174'],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
@@ -41,9 +41,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // MongoDB connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/wedbricks', {
+mongoose.connect(process.env.MONGODB_URI , {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  
 })
 .then(() => console.log('✅ Connected to MongoDB'))
 .catch(err => {
@@ -129,7 +129,8 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
+// const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📁 Upload directories:

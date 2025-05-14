@@ -66,7 +66,7 @@ const socketHandler = (server) => {
                });
         await notification.save();
 
-        const receiverSocketId = onlineUsers.get(VendorId);
+        const receiverSocketId = onlineUsers.get(vendorId);
         if (receiverSocketId) {
           io.to(receiverSocketId).emit('newNotification', notification);
         }
