@@ -31,7 +31,7 @@ socketHandler(server);
 
 // Middleware
 app.use(cors({
-  origin: ['https://wed-bricks-l6pi-e08unxpgt-ayesha-s-projects-b9a7ba29.vercel.app/','http://localhost:5173', 'http://localhost:5174'],
+  origin: ['https://wed-bricks-l6pi-e08unxpgt-ayesha-s-projects-b9a7ba29.vercel.app','http://localhost:5173', 'http://localhost:5174'],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
@@ -43,6 +43,7 @@ app.use(express.urlencoded({ extended: true }));
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI , {
   useNewUrlParser: true,
+  useUnifiedTopology: true ,
   
 })
 .then(() => console.log('✅ Connected to MongoDB'))
