@@ -31,7 +31,10 @@ socketHandler(server);
 
 // Middleware
 app.use(cors({
-  origin: ['https://wed-bricks-l6pi-e08unxpgt-ayesha-s-projects-b9a7ba29.vercel.app','http://localhost:5173', 'http://localhost:5174'],
+  origin: ['https://wed-bricks-l6pi.vercel.app',
+    'https://*.vercel.app',
+    'http://localhost:5173', 
+    'http://localhost:5174'],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
@@ -51,7 +54,14 @@ mongoose.connect(process.env.MONGODB_URI , {
   console.error('❌ MongoDB connection error:', err);
   process.exit(1);
 });
-
+// Add this above your existing routes
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    message: 'Welcome to WedBricks API!',
+    docs: 'https://your-docs-url.com' // Optional
+  });
+});
 // Local Multer config to avoid name conflict
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
