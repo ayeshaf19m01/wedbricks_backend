@@ -8,7 +8,7 @@ let io;
 const socketHandler = (server) => {
   io = new Server(server, {
     cors: {
-      origin: ['https://wed-bricks-l6pi.vercel.app','https://wedbricks-admin.vercel.app','https://frontend-six-rho-38.vercel.app',
+      origin: ['https://frontend-git-main-wedbricks-projects.vercel.app','https://wedbrick-admin.vercel.app','https://wed-bricks-l6pi.vercel.app','https://wedbricks-admin.vercel.app','https://frontend-six-rho-38.vercel.app',
         'https://*.vercel.app',
         'http://localhost:5173', 
         'http://localhost:5174'],
