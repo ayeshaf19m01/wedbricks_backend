@@ -31,7 +31,7 @@ socketHandler(server);
 
 // Middleware
 app.use(cors({
-  origin: ['https://frontend-six-rho-38.vercel.app','https://wed-bricks-l6pi.vercel.app','https://wedbricks-admin.vercel.app',
+  origin: ['https://frontend-git-main-wedbricks-projects.vercel.app','https://wedbrick-admin.vercel.app','https://frontend-six-rho-38.vercel.app','https://wed-bricks-l6pi.vercel.app','https://wedbricks-admin.vercel.app',
     'https://*.vercel.app',
     'http://localhost:5173', 
     'http://localhost:5174'],
